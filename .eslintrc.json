@@ -1,0 +1,78 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "type:e2e",
+                "onlyDependOnLibsWithTags": ["type:shell", "type:app"]
+              },
+              {
+                "sourceTag": "type:shell",
+                "onlyDependOnLibsWithTags": ["type:app", "type:ui", "type:util"]
+              },
+              {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": [
+                  "type:data-access",
+                  "type:ui",
+                  "type:util"
+                ]
+              },
+              {
+                "sourceTag": "type:ui",
+                "onlyDependOnLibsWithTags": ["type:ui", "type:util"]
+              },
+              {
+                "sourceTag": "type:data-access",
+                "onlyDependOnLibsWithTags": ["type:util"]
+              },
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
+              },
+              {
+                "sourceTag": "scope:home",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:home"]
+              },
+              {
+                "sourceTag": "scope:products",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:products"]
+              },
+              {
+                "sourceTag": "scope:cart",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:cart"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "env": {
+        "jest": true
+      },
+      "rules": {}
+    }
+  ]
+}

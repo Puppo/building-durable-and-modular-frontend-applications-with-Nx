@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@puppo/products/services": ["products/services/src/index.ts"],
+      "@puppo/ui": ["ui/src/index.ts"],
+      "@puppo/utils": ["packages/utils/src/index.ts"],
+      "cart/Routes": ["cart/cart/src/app/remote-entry/entry.routes.ts"],
+      "home/Routes": ["home/home/src/app/remote-entry/entry.routes.ts"],
+      "products/Routes": [
+        "products/products/src/app/remote-entry/entry.routes.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
